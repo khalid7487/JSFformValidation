@@ -1,12 +1,60 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Product Entry</title>
+        <link href="css/default.css" rel="stylesheet" type="text/css"/>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <f:view>
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputLabel>Product ID:</h:outputLabel>
+                    <h:inputText value="#{productBean4.pid}" required="true" 
+                                 requiredMessage="You must enter a Product ID"
+                                 validatorMessage="Product ID must be 3 or 5 chars"
+                                 id="productID">
+                        <f:validateLength minimum="3" maximum="5"/>
+                    </h:inputText>
+                    <h:message for="productID" styleClass="error"/>
+                    <h:outputLabel>Product Name:</h:outputLabel>
+                    <h:inputText value="#{productBean4.pname}" required="true"
+                                 requiredMessage="You must enter a Product Name"
+                                 validatorMessage="Product Name must be at least 3 chars"
+                                 id="productName">
+                        <f:validateLength minimum="3"/>
+                        </h:inputText>
+                        <h:message for="productName" styleClass="error"/>                    
+                    <h:outputLabel>Purchase Price:</h:outputLabel>
+                    <h:inputText value="#{productBean4.price}" required="true" 
+                                 requiredMessage="You must enter an Purchase Price"
+                                 converterMessage="Purchase Price must be a number"
+                                 validator="#{productBean4.validatePurchasePrice}"
+                                 id="price"/>
+                    <h:message for="price" styleClass="error"/>
+                    <h:outputLabel>Sell Price:</h:outputLabel>
+                    <h:inputText value="#{productBean4.sell}" required="true" 
+                                 requiredMessage="You must enter an sell Price"
+                                 converterMessage="sell Price must be a number"
+                                 validator="#{productBean4.validateSalePrice}"
+                                 id="sell"/>
+                    <h:message for="sell" styleClass="error"/>
+                    
+                    <h:outputLabel>Quantity:</h:outputLabel>
+                    <h:inputText value="#{productBean4.qty}" required="true"
+                                 requiredMessage="You must enter a Quantity"
+                                 converterMessage="Quantity must be a whole number"
+                                 validatorMessage="Quantity must be 1 or more"
+                                 id="qty">
+                        <f:validateDoubleRange minimum="1"/>
+                    </h:inputText>
+                    <h:message for="qty" styleClass="error"/>
+                </h:panelGrid>
+                <h:commandButton value="Purchase" action="#{productBean2.doPurchase}"/>
+            </h:form>
+        </f:view>
     </h:body>
 </html>
 
