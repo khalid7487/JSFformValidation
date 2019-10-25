@@ -53,7 +53,7 @@ public class ProductBean4 {
     }
    //Action Controller
     public String doPurchase(){
-        return ("dispaly2");
+        return ("display4");
     }
     double pp;
     public void validatePurchasePrice(FacesContext context, UIComponent
